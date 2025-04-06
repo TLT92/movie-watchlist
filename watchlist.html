@@ -5,7 +5,26 @@
     <link rel="stylesheet" href="index.css"></style>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/85c864256d.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    <header>
+      <h1>My Watchlist</h1>
+      <a class="nav-link" href="index.html">Search for movies</a>
+    </header>
+    <main>
+      <div id="sort-container">
+        <label for="sort-menu">Sort by</label>
+        <select id="sort-menu">
+          <option value="Title-ascending">Name (A-Z)</option>
+          <option value="Title-descending">Name (Z-A)</option>
+          <option value="imdbRating-descending">Rating (high-low)</option>
+          <option value="imdbRating-ascending">Rating (low-high)</option>
+          <option value="Year-descending">Year (new-old)</option>
+          <option value="Year-ascending">Year (old-new)</option>
+        </select>
+      </div>
+      <div id="movies-container"></div>
+    </main>
   </body>
 </html>
