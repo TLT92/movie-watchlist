@@ -92,14 +92,13 @@ input:-webkit-autofill {
 #sort-menu {
   font-family: Inter, "sans-serif";
   height: 100%;
-  width: 50%;
+  width: calc(50% - 5px);
   text-align: center;
   border: none;
   border-left: 1px solid #D1D5DB;
-
 }
 
-#sort-menu {
+#sort-menu:focus {
   outline: none;
   box-shadow: none;
   border-color: inherit;
@@ -140,7 +139,7 @@ input:-webkit-autofill {
   background-color: rgb(228, 228, 228);
 }
 
-.loading, .before-search, .no-results-container {
+.loading, .before-search, .message-container, .no-results-container {
   margin-top: -30px;
   align-self: center;
   align-content: center;
@@ -161,25 +160,13 @@ input:-webkit-autofill {
   width: 550px;
 }
 
-.message-container {
-  margin-top: -30px;
-  align-self: center;
-  align-content: center;
-  text-align: center;
-  min-height: 500px;
-
-  font-size: 18px;
-  font-weight: bold;
-  color: #DFDDDD;
-}
-
 .movie-el {
   font-family: Inter, "sans-serif";
   width: 100%;
   height: 250px;
   display: flex;
   margin-bottom: 22px;
-  text-overflow: ellipsis;
+
   padding-bottom: 20px;
   border-bottom: 1px solid #E5E7EB;
 }
@@ -288,7 +275,7 @@ input:-webkit-autofill {
 .missing-movie-poster {
   display: flex;
   width: 150px;
-  height: 225px; /* match expected image height */
+  height: 225px;
   margin-right: 20px;
   border-radius: 5px;
   flex-shrink: 0;
@@ -316,14 +303,12 @@ input:-webkit-autofill {
     width: 100%;
   }
   
-  
   /* Main (search bar & movie display */
   main {
     width: 75%;
   }
   
   #search-bar, #sort-container {
-    height: 38px;
     width: 100%;
   }
   
@@ -359,15 +344,6 @@ input:-webkit-autofill {
   .movie-rating-icon {
     margin-left: auto;
     margin-right: 1px;
-  }
-  
-  .movie-runtime, .movie-genres, .add-or-remove-btn {
-    font-size: 12px;
-    font-weight: 300;
-  }
-
-  .movie-genres {
-    margin-left: 5px;
   }
   
   .movie-poster {
