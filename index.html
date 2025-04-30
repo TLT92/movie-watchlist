@@ -4,7 +4,7 @@
     <title>Movie Watchlist</title>
     <link rel="stylesheet" href="index.css"></style>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="script.js" defer></script>
+    <script type="module" src="js/searchPage.js" defer></script>
     <script src="https://kit.fontawesome.com/85c864256d.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -16,15 +16,13 @@
       <div id="search-bar">
         <form id="search-form">
           <img id="search-icon" src="./images/search-icon.png" id="search-icon">
-          <input id="search-input" name="search-input" type="text" placeholder="Search for a movie" required />
-          <button id="search-btn" type="submit">Search</button>
+          <input id="search-input" name="search-input" type="text" placeholder="Input movie title here..." required />
+          <button id="search-btn" type="submit">Start Search</button>
         </form>
       </div>
-      <div id="movies-container">
-        <div id="before-search-container">
-          <img src="./images/film-reel-icon.png"/>
-          <p>Start exploring</p>
-        </div>
+      <div id="movies-container" class="before-search">
+        <img src="./images/film-reel-icon.png"/>
+        <p>Start exploring</p>
       </div>
     </main>
   </body>

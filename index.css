@@ -26,7 +26,7 @@ header {
   background-image: url("./images/header-background-img.png");
   background-repeat: no-repeat;
   height: 208px;
-  width: 550px;
+  width: 750px;
 }
 
 h1 {
@@ -48,15 +48,19 @@ h1 {
 /* Main (search bar & movie display */
 
 main {
-  width: 550px;
+  width: 750px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+#search-bar {
+  position: relative;
+}
+
 #search-bar, #sort-container {
   height: 38px;
-  width: 462px;
+  width: 550px;
   margin-top: -19px;
   align-self: center;
   background-color: white;
@@ -64,6 +68,12 @@ main {
   border-radius: 5px;
   margin-bottom: 35px;
   justify-content: space-between;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  caret-color: black;
 }
 
 #sort-container {
@@ -89,13 +99,26 @@ main {
 
 }
 
+#sort-menu {
+  outline: none;
+  box-shadow: none;
+  border-color: inherit;
+}
+
 #search-form, #sort-form {
   height: 100%;
   display: flex;
 }
 
+#search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 #search-input, #search-btn {
-  height: 100%;
   font-family: Inter, "sans-serif";
   border: none;
   background-color: transparent;
@@ -103,26 +126,21 @@ main {
 
 #search-input {
   width: 100%;
-  padding-left: 10px;
+  padding-left: 3rem;
 }
 
 #search-btn {
   margin-left: auto;
-  width: 120px;
+  width: 180px;
   border-left: 1px solid #D1D5DB;
 }
 
 #search-btn:hover {
   cursor: pointer;
+  background-color: rgb(228, 228, 228);
 }
 
-#search-icon {
-  margin-left: 10px;
-  margin-top: 10px;
-  height: 50%;
-}
-
-#before-search-container, .no-results-container {
+.loading, .before-search, .no-results-container {
   margin-top: -30px;
   align-self: center;
   align-content: center;
@@ -134,13 +152,13 @@ main {
   color: #DFDDDD;
 }
 
-#before-search-container p {
+.loading, .before-search p {
   margin-top: 5px;
 }
 
 /* (Main) Display movies */
 #movies-container {
-  width: 462px;
+  width: 550px;
 }
 
 .message-container {
@@ -157,6 +175,8 @@ main {
 
 .movie-el {
   font-family: Inter, "sans-serif";
+  width: 100%;
+  height: 250px;
   display: flex;
   margin-bottom: 22px;
   text-overflow: ellipsis;
@@ -182,7 +202,7 @@ main {
   width: 85%;
 }
 
-.add-to-watchlist-container {
+.add-to-watchlist-container, .remove-from-watchlist-container, .disabled-watchlist-container {
   display: flex;
   margin-left: 20px;
   align-items: center;
@@ -190,14 +210,18 @@ main {
   justify-content: space-between;
 }
 
-.add-to-watchlist-container:hover {
+.add-to-watchlist-container:hover, .remove-from-watchlist-container:hover {
   cursor: pointer;
+}
+
+.disabled-watchlist-container:hover {
+  cursor: not-allowed;
 }
 
 .movie-title {
   font-size: 18px;
   font-weight: 500;
-  line-height: 15px;
+  line-height: 20px;
   padding: 0;
   margin: 0;
 }
@@ -207,14 +231,22 @@ main {
   color: black;
 }
 
-
 .movie-rating-icon {
-  font-size: 12px;
   color: #FEC654;
   margin-left: 5px;
+  margin-right: -5px;
 }
 
-.icon-container {
+.movie-rating {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 12px;
+  padding: 0;
+  margin: 0;
+  padding-top: 2px;
+}
+
+.icon-container, .disabled-icon-container {
   margin: 0;
   padding: 0;
   display: flex;
@@ -229,44 +261,10 @@ main {
   font-weight: 800;
 }
 
-.watchlist-search-link-icon-container {
-  margin-right: 10px;
-  font-weight: 800;
-  display: inline-block;
-}
-
-.watchlist-search-link-icon-container .add-icon {
-  width: 20px;
-  height: 20px;
-  font-size: 15px;
-  line-height: 20px;
-  color: white;
-  background-color: black;
-  border-radius: 50%;
-}
-
-.disabled-watchlist-container:hover {
-  cursor: not-allowed;
-}
-
 .disabled-icon-container {
   background-color: gray;
 }
 
-.add-icon, .remove-icon {
- line-height: 15px;
- font-size: 12px;
- transform: translateY(0);
-}
-
-.movie-rating {
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 12px;
-  padding: 0;
-  margin: 0;
-  padding-top: 2px;
-}
 
 .movie-runtime, .movie-genres, .add-or-remove-btn {
   font-size: 12px;
@@ -282,22 +280,111 @@ main {
 }
 
 .movie-poster {
-  width: 99px;
+  width: 150px;
   margin-right: 20px;
   border-radius: 5px;
 }
 
+.missing-movie-poster {
+  display: flex;
+  width: 150px;
+  height: 225px; /* match expected image height */
+  margin-right: 20px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  color: red;
+  justify-content: center; 
+  align-items: center;
+}
 .movie-plot {
   font-weight: 300;
   line-height: 1.5;
   margin-top: 0px;
   font-size: 13px;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: #6B7280;
 }
 
 
-/* Watchlist page specific content */
+/* Mobile / very small screens */
+@media (max-width: 767px) {
+  header {
+    height: 175px;
+    width: 100%;
+  }
+  
+  
+  /* Main (search bar & movie display */
+  main {
+    width: 75%;
+  }
+  
+  #search-bar, #sort-container {
+    height: 38px;
+    width: 100%;
+  }
+  
+  .loading, .before-search, .no-results-container {
+    margin-top: 100px;
+    align-content: start;
+  }
+
+  /* Movies */
+  #movies-container {
+    width: 100%;
+  }
+
+  .movie-el {
+    height: 175px;
+  }
+  
+  .title-and-rating-container, .runtime-genres-and-add-btn-container {
+    justify-content: space-between;
+    width: 100%;
+    gap: 7.5px;
+  }
+  
+  .add-to-watchlist-container, .remove-from-watchlist-container {
+    margin-left: 0px;
+  }
+  
+  .movie-title {
+    font-size: 14px;
+    line-height: 15px;
+  }
+
+  .movie-rating-icon {
+    margin-left: auto;
+    margin-right: 1px;
+  }
+  
+  .movie-runtime, .movie-genres, .add-or-remove-btn {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .movie-genres {
+    margin-left: 5px;
+  }
+  
+  .movie-poster {
+    width: 95px;
+    margin-top: 15px;
+  }
+  
+  .missing-movie-poster {
+    width: 95px;
+    margin-top: 15px;
+  }
+
+  .movie-plot {
+    -webkit-line-clamp: 3;
+  }
+
+  .icon-container {
+    margin-right: 5px;
+  }
+}
